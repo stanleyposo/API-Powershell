@@ -1,0 +1,10 @@
+ ## Query event
+$start = "CHANGE_ME"
+$end = "CHANGE_ME"
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+    'DD-APPLICATION-KEY' = '{DD_APP_KEY}'
+}
+$apiurl = "https://app.agent.datadoghq.com/api/v1/events?start=" + $start + "&end=" + $end
+
+Invoke-WebRequest -Method 'GET' -uri $apiurl -Headers $headers -ContentType "application/json" 
