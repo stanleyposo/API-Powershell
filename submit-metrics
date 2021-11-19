@@ -1,0 +1,11 @@
+ ## Send metric
+$metric_name = "system.load.1"
+$metric_value = 1234.5
+$unix_timestamp = [int64](Get-Date -UFormat %s)
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+
+$body = "{`"series`":[{`"metric`":`""+$metric_name+"`",`"points`":[[`""+$unix_timestamp+"`","+$metric_value+"]],`"host`":`"foo`",`"type`":`"gauge`"}]}"
+Invoke-WebRequest -Method 'POST' https://app.agent.datadoghq.com/api/v1/series -Headers $headers -Body $body 
