@@ -1,0 +1,9 @@
+ ## GET event
+$event_id = 163728831
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+    'DD-APPLICATION-KEY' = '{DD_APP_KEY}'
+}
+$apiurl = "https://app.agent.datadoghq.com/api/v1/events/" + $event_id
+
+Invoke-WebRequest -Method 'GET' -uri $apiurl -Headers $headers -ContentType "application/json" 
