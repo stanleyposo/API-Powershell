@@ -5,8 +5,8 @@ $body = @{
     "meta" = "xxxx"
 }
 $headers = @{
-    'DD-API-KEY' = 'bf31b3420428f8fb517ed25b80a82818'
-    'DD-APPLICATION-KEY' = 'f7c05dffa0cc77299b7b655461e1dca351a0867e'
+    'DD-API-KEY' = '{DD_API_KEY}'
+    'DD-APPLICATION-KEY' = '{DD_APP_KEY}'
 }
 $apiurl = "https://api.datadoghq.com/api/v2/logs/events/search"
 
