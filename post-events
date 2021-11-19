@@ -1,0 +1,10 @@
+## Send event (tested)
+$body = @{
+    "text" = "Oh boy!";
+    "title" = "Did you hear the news today?";
+}
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+Invoke-WebRequest -Method 'POST' https://api.agent.datadoghq.com/api/v1/events -Headers $headers -ContentType "application/json" -Body ($body|ConvertTo-Json)
