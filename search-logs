@@ -1,0 +1,13 @@
+# Search Logs
+$body = @{
+    "data" ="xxxx"
+    "links" = "xxxx"
+    "meta" = "xxxx"
+}
+$headers = @{
+    'DD-API-KEY' = 'bf31b3420428f8fb517ed25b80a82818'
+    'DD-APPLICATION-KEY' = 'f7c05dffa0cc77299b7b655461e1dca351a0867e'
+}
+$apiurl = "https://api.datadoghq.com/api/v2/logs/events/search"
+
+Invoke-WebRequest -Method 'POST' -uri $apiurl -Headers $headers -ContentType "application/json" -Body ($body|ConvertTo-Json) 
