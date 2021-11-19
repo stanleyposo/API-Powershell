@@ -1,0 +1,42 @@
+ ## Multi JSON Messages
+# Pass multiple log objects at once.
+$body = @{
+    "message" = "hello"
+}
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+Invoke-WebRequest -Method 'POST' https://http-intake.logs.datadoghq.com/api/v2/logs -Headers $headers -ContentType "application/json" -Body ($body|ConvertTo-Json)
+
+## Simple JSON Message
+# Log attributes can be passed as `key:value` pairs in valid JSON messages.
+$body = @{
+    "ddsource" = "agent";
+    "ddtags" = "env:prod,user:joe.doe";
+    "hostname" = "fa1e1e739d95"
+    "message" = "hello world"
+}
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+Invoke-WebRequest -Method 'POST' https://http-intake.logs.datadoghq.com/api/v2/logs -Headers $headers -ContentType "application/json" -Body ($body|ConvertTo-Json)
+
+## Multi Logplex Messages
+# Submit log messages.
+$body = "hello";"world"
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+Invoke-WebRequest -Method 'POST' https://http-intake.logs.datadoghq.com/api/v2/logs -Headers $headers -ContentType "application/logplex-1" -Body ($body|ConvertTo-Json)
+
+## Simple Logplex Message
+# Submit log string.
+$body = "hello world"
+$headers = @{
+    'DD-API-KEY' = '{DD_API_KEY}'
+}
+
+Invoke-WebRequest -Method 'POST' https://http-intake.logs.datadoghq.com/api/v2/logs -Headers $headers -ContentType "application/logplex-1" -Body ($body|ConvertTo-Json) 
